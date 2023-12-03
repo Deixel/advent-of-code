@@ -131,7 +131,6 @@ fn parse_round_for_colour(line: &str, colour: Colour) -> usize {
         None => None,
         Some(cap) => Some(cap.get(1).unwrap().as_str()),
     };
-    dbg!(value);
     match value {
         None => 0,
         Some(num_colour) => num_colour.parse().unwrap(),
