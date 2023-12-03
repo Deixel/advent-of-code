@@ -1,6 +1,6 @@
+use aoc_util::load_input;
 use once_cell::sync::Lazy;
 use regex::Regex;
-use std::{fs, usize};
 
 struct Round {
     red: usize,
@@ -30,9 +30,11 @@ impl Round {
 fn main() {
     let file_path = "/home/deixel/Projects/advent_of_code/2023/aoc-2023-02/src/input.txt";
 
-    let contents: String = fs::read_to_string(file_path).expect("Can't read the file");
+    let lines = load_input(file_path);
 
-    let lines = contents.split("\n");
+    // let contents: String = fs::read_to_string(file_path).expect("Can't read the file");
+
+    // let lines = contents.split("\n");
 
     let limits = Round {
         red: 12,
@@ -43,7 +45,7 @@ fn main() {
     let mut power = 0;
 
     for line in lines {
-        let game = parse_game(line);
+        let game = parse_game(line.as_str());
         if game.max_seen.is_possible(&limits) {
             total += game.id;
         }
